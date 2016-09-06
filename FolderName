@@ -1,0 +1,9 @@
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+objStartFolder = "FolderPath"
+Set NewFile = objFSO.CreateTextFile(objStartFolder + "\FolderName.txt", True)
+Set objFolder = objFSO.GetFolder(objStartFolder)
+Set colFiles = objFolder.SubFolders
+For Each objFile in colFiles
+	ND = objFile.Name & objFile.DateLastModified
+	NewFile.WriteLine(ND)
+Next
