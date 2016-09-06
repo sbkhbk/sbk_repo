@@ -1,0 +1,44 @@
+Option Explicit
+Dim objFSO, wshShell
+On Error Resume Next    
+   Set objFSO   = CreateObject("Scripting.FileSystemObject")
+   Set wshShell = CreateObject("Wscript.Shell")
+   If Err.Number <> 0 Then     
+      Wscript.Quit      
+   End If     
+On Error Goto 0      
+
+On Error Resume Next
+   TaskScript
+   If Err.Number <> 0 Then
+      Wscript.Quit
+   End If
+On Error Goto 0
+
+Function TaskScript
+	Dim scheduledTime, waited
+	Dim objShell
+	Set objShell = Wscript.CreateObject("WScript.Shell")
+	Dim shour, sminute
+	
+	shour = Inputbox("Enter hour : in 24h format. For example: 3 PM should be 15")
+	sminute = Inputbox("Enter Minute for scheduling")
+	
+	scheduledTime = Int(Now) + TimeSerial(shour, sminute, 00)
+	msgbox scheduledTime
+	
+	Do
+      scheduledTime = Int(Now) + TimeSerial(shour, sminute, 00)
+      waited = DateDiff("S", Now, scheduledTime)
+      If waited <= 600 Then
+         Wscript.Sleep waited * 1000
+		 msgbox "IN"
+         objShell.run "filepath/filename.vbs"
+		 msgbox "OUT"
+		 Wscript.Quit
+      Else
+         WScript.Sleep 590 * 1000
+      End If
+	Loop
+	msgbox "Done"
+End Function
