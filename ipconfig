@@ -1,0 +1,6 @@
+set WshShell = CreateObject("WScript.Shell")
+wshshell.run("cmd.exe")
+wscript.sleep 200
+wshshell.sendkeys "DIR"
+wscript.sleep 200
+wshshell.sendkeys "{ENTER}"
