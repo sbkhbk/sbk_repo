@@ -1,0 +1,22 @@
+objStartFolder = "<<Path>>"
+
+		Set objFS = CreateObject("Scripting.FileSystemObject")
+		Set objTextFile = objFS.OpenTextFile(objStartFolder , 1, True)
+		Set objTextFile2 = objFS.CreateTextFile("<<Path>>\*.txt", true)
+		count = 1
+		Do Until objTextFile.AtEndOfStream
+			Current_line = objTextFile.ReadLine
+			strLen = len(Current_line)
+			For i = 1 to strLen
+				curChar = mid(Current_line,i,1)
+					if curChar = ";" then
+						count = count + 1
+					end if
+			Next
+			objTextFile2.WriteLine count
+			count = 1
+		Loop
+		objTextFile.close
+		objTextFile2.close
+		set objTextFile = nothing
+		msgbox "Completed :)"
