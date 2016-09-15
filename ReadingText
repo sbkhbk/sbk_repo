@@ -1,0 +1,23 @@
+Dim objFSO, strTextFile, strData, strLine, arrLines
+CONST ForReading = 1
+
+'name of the text file
+strTextFile = "TreatmentFiles.txt"
+
+'Create a File System Object
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+
+'Open the text file - strData now contains the whole file
+strData = objFSO.OpenTextFile(strTextFile,ForReading).ReadAll
+
+'Split the text file into lines
+arrLines = Split(strData,vbCrLf)
+
+'Step through the lines
+'For Each strLine in arrLines
+for i=0 to UBound(arrLines)-1
+wscript.echo arrLines(i)
+Next
+
+'Cleanup
+Set objFSO = Nothing
