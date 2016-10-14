@@ -1,0 +1,71 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+Set wsParam = Application.Sheets("Param")
+
+    If Target.Row = 3 Then
+        If Target.Column = 5 Or Target.Column = 6 Then
+            If Target.Text = "INT80" Then
+                x = wsParam.Columns("H:H").Find(what:=Target.Text).Row
+                y = wsParam.Columns("H:H").Find(what:=Target.Text).Column
+                Cells(5, Target.Column) = wsParam.Cells(x, y + 1).Value
+                Cells(6, Target.Column) = wsParam.Cells(x, y + 2).Value
+                Cells(7, Target.Column) = wsParam.Cells(x, y + 3).Value
+                Cells(9, Target.Column) = wsParam.Cells(x, y + 4).Value
+                Cells(10, Target.Column) = wsParam.Cells(x, y + 5).Value
+                Cells(11, Target.Column) = wsParam.Cells(x, y + 6).Value
+                Cells(12, Target.Column) = wsParam.Cells(x, y + 7).Value
+            ElseIf Target.Text = "INT81" Then
+                x = wsParam.Columns("H:H").Find(what:=Target.Text).Row
+                y = wsParam.Columns("H:H").Find(what:=Target.Text).Column
+                Cells(5, Target.Column) = wsParam.Cells(x, y + 1).Value
+                Cells(6, Target.Column) = wsParam.Cells(x, y + 2).Value
+                Cells(7, Target.Column) = wsParam.Cells(x, y + 3).Value
+                Cells(9, Target.Column) = wsParam.Cells(x, y + 4).Value
+                Cells(10, Target.Column) = wsParam.Cells(x, y + 5).Value
+                Cells(11, Target.Column) = wsParam.Cells(x, y + 6).Value
+                Cells(12, Target.Column) = wsParam.Cells(x, y + 7).Value
+            ElseIf Target.Text = "INT83" Then
+                x = wsParam.Columns("H:H").Find(what:=Target.Text).Row
+                y = wsParam.Columns("H:H").Find(what:=Target.Text).Column
+                Cells(5, Target.Column) = wsParam.Cells(x, y + 1).Value
+                Cells(6, Target.Column) = wsParam.Cells(x, y + 2).Value
+                Cells(7, Target.Column) = wsParam.Cells(x, y + 3).Value
+                Cells(9, Target.Column) = wsParam.Cells(x, y + 4).Value
+                Cells(10, Target.Column) = wsParam.Cells(x, y + 5).Value
+                Cells(11, Target.Column) = wsParam.Cells(x, y + 6).Value
+                Cells(12, Target.Column) = wsParam.Cells(x, y + 7).Value
+            ElseIf Target.Text = "INT96" Then
+                x = wsParam.Columns("H:H").Find(what:=Target.Text).Row
+                y = wsParam.Columns("H:H").Find(what:=Target.Text).Column
+                Cells(5, Target.Column) = wsParam.Cells(x, y + 1).Value
+                Cells(6, Target.Column) = wsParam.Cells(x, y + 2).Value
+                Cells(7, Target.Column) = wsParam.Cells(x, y + 3).Value
+                Cells(9, Target.Column) = wsParam.Cells(x, y + 4).Value
+                Cells(10, Target.Column) = wsParam.Cells(x, y + 5).Value
+                Cells(11, Target.Column) = wsParam.Cells(x, y + 6).Value
+                Cells(12, Target.Column) = wsParam.Cells(x, y + 7).Value
+            ElseIf Target.Text = "INT97" Then
+                x = wsParam.Columns("H:H").Find(what:=Target.Text).Row
+                y = wsParam.Columns("H:H").Find(what:=Target.Text).Column
+                Cells(5, Target.Column) = wsParam.Cells(x, y + 1).Value
+                Cells(6, Target.Column) = wsParam.Cells(x, y + 2).Value
+                Cells(7, Target.Column) = wsParam.Cells(x, y + 3).Value
+                Cells(9, Target.Column) = wsParam.Cells(x, y + 4).Value
+                Cells(10, Target.Column) = wsParam.Cells(x, y + 5).Value
+                Cells(11, Target.Column) = wsParam.Cells(x, y + 6).Value
+                Cells(12, Target.Column) = wsParam.Cells(x, y + 7).Value
+            ElseIf Target.Text = "INT98" Then
+                x = wsParam.Columns("H:H").Find(what:=Target.Text).Row
+                y = wsParam.Columns("H:H").Find(what:=Target.Text).Column
+                Cells(5, Target.Column) = wsParam.Cells(x, y + 1).Value
+                Cells(6, Target.Column) = wsParam.Cells(x, y + 2).Value
+                Cells(7, Target.Column) = wsParam.Cells(x, y + 3).Value
+                Cells(9, Target.Column) = wsParam.Cells(x, y + 4).Value
+                Cells(10, Target.Column) = wsParam.Cells(x, y + 5).Value
+                Cells(11, Target.Column) = wsParam.Cells(x, y + 6).Value
+                Cells(12, Target.Column) = wsParam.Cells(x, y + 7).Value
+            End If
+        End If
+    End If
+    
+    
+End Sub
