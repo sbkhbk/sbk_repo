@@ -1,0 +1,22 @@
+Public Function ExectureProcedure(ByVal TextQuery As String, CurrentADODB As ADODB.Connection) As String
+    On Error Resume Next
+    Dim rs          As ADODB.Recordset
+    Dim dateStart   As Date
+    
+    CurrentADODB.CursorLocation = adOpenStatic
+    dateStart = Now
+    
+    Set rs = CurrentADODB.Execute(TextQuery)
+    Debug.Print TextQuery & vbTab & " : " & (Now - dateStart) * 24 * 3600 & " s."
+    
+    If Err.Number = -2147217865 Then
+        Err.Clear
+        Resume
+    ElseIf Err.Number <> 0 Then
+        MsgBox "Il y a eu une erreur lors de l'execution de la procédure : " & vbCrLf & TextQuery & vbCrLf & Err.Description
+        Err.Clear
+    Else
+        Set rs = Nothing
+    End If
+    
+End Function
