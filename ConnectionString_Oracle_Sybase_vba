@@ -1,0 +1,67 @@
+Public Function ConnectionServeur() As Boolean
+    Dim stConnection    As String
+    Dim xlSheet         As Excel.Worksheet
+    On Error GoTo dbErrors
+    
+    ConnectionServeur = False
+    Application.StatusBar = "Connecting Databases ...."
+    Set xlSheet = ActiveWorkbook.Sheets("Param")
+    
+    Set ADODB_Oracle_Ref = New ADODB.Connection
+    ADODB_Oracle_Ref.CursorLocation = adUseServer
+'    stConnection = "Provider=MSDAORA.1" & _
+'        ";Password=" & xlSheet.Range("E7") & _
+'        ";User ID=" & xlSheet.Range("E6") & _
+'        ";Data Source=" & xlSheet.Range("E5") & _
+'        ";Persist Security Info=True"
+    
+    stConnection = "Driver={Microsoft ODBC for Oracle};" & _
+           "Server=" & xlSheet.Range("E5") & ";" & _
+           "Uid=" & xlSheet.Range("E6") & ";" & _
+           "Pwd=" & xlSheet.Range("E7")
+    
+    Application.StatusBar = "Connecting Oracle in Ref ...."
+    ADODB_Oracle_Ref.Open stConnection
+    ADODB_Oracle_Ref.CommandTimeout = 0
+    
+    Set ADODB_SyBase_Ref = New ADODB.Connection
+    ADODB_SyBase_Ref.CursorLocation = adUseServer
+    stConnection = "DRIVER={Sybase ASE 1252}" & _
+        ";NA=" & xlSheet.Range("E9") & _
+        ";DB=" & xlSheet.Range("E10") & _
+        ";UID=" & xlSheet.Range("E11") & _
+        ";PWD=" & xlSheet.Range("E12")
+    Application.StatusBar = "Connecting Sybase in Ref ...."
+    ADODB_SyBase_Ref.Open stConnection
+    ADODB_SyBase_Ref.CommandTimeout = 0
+    
+    Set ADODB_Oracle_Ite = New ADODB.Connection
+    ADODB_Oracle_Ite.CursorLocation = adUseServer
+    stConnection = "Provider=MSDAORA.1" & _
+        ";Password=" & xlSheet.Range("F7") & _
+        ";User ID=" & xlSheet.Range("F6") & _
+        ";Data Source=" & xlSheet.Range("F5") & _
+        ";Persist Security Info=True"
+    Application.StatusBar = "Connecting Oracle in Ite ...."
+    ADODB_Oracle_Ite.Open stConnection
+    ADODB_Oracle_Ite.CommandTimeout = 0
+    
+    Set ADODB_SyBase_Ite = New ADODB.Connection
+    ADODB_SyBase_Ite.CursorLocation = adUseServer
+    stConnection = "DRIVER={Sybase ASE 1252}" & _
+        ";NA=" & xlSheet.Range("F9") & _
+        ";DB=" & xlSheet.Range("F10") & _
+        ";UID=" & xlSheet.Range("F11") & _
+        ";PWD=" & xlSheet.Range("F12")
+    Application.StatusBar = "Connecting Sybase in Ite ...."
+    ADODB_SyBase_Ite.Open stConnection
+    ADODB_SyBase_Ite.CommandTimeout = 0
+    
+    ConnectionServeur = True
+    Application.StatusBar = "Connecting Succefull"
+    Exit Function
+    
+dbErrors:
+    MsgBox "Connection à la base de données impossible." & vbCrLf & Err.Description & vbCrLf & stConnection
+    
+End Function
